@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    block head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(href='https://fonts.googleapis.com/css?family=Tangerine', rel='stylesheet')
+        link(rel='stylesheet', href='/css/style.css')
+        link(rel='shortcut icon', type='image/png', href='img/favicon.png')
+        title Natours | #{title}
+
+  body
+    //- HEADER
+    include _header
+
+    //- include _overview
+    block content
+      h1 This is the placeholder heading
+    //- include _content
+
+    //- FOOTER
+    include _footer
+    script(http-equiv='Content-Security-Policy' content="default-src='https://unpkg.com/axios@1.6.8/dist/axios.min.js'")
+    script(http-equiv='Content-Security-Policy' content="default-src='/js/mapbox.js'")
+    script(http-equiv='Content-Security-Policy' content="default-src='/js/login.js'")

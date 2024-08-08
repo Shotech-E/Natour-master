@@ -1,0 +1,170 @@
+showars
+cdpWHmyE9FbmumJF
+
+mongodb+srv://showars:cdpWHmyE9FbmumJF@cluster0.esjehex.mongodb.net/
+
+mongodb+srv://showars:cdpWHmyE9FbmumJF@cluster0.esjehex.mongodb.net/
+
+mongosh "mongodb+srv://cluster0.esjehex.mongodb.net/" --apiVersion 1 --username showars --password cdpWHmyE9FbmumJF
+
+#oGpm15O4z1EFJZOS
+# cdpWHmyE9FbmumJF
+
+
+// How to do this using resend or gmail
+// 0 upvotes
+// Benjamin · Lecture 209 · 8 days ago
+// Resend makes sending emails easy and free, without a company name, if you do not care about the address from where the email is sent. If you do you will need to register a domain name. For the purpose of working through this course this is not a problem, for real life if you do not have a domain you may want to purchase one as cheaply as possible.
+
+// To use resend:
+
+// - npm i resend
+
+// - set things up like here: https://resend.com/docs/send-with-nodemailer-smtp, which I implemented as:
+
+// module.exports = class Email {
+//   constructor(user, url) {
+//     this.to = user.email;
+//     this.firstName = user.name.split(' ')[0];
+//     this.url = url;
+//     if (process.env.NODE_ENV === 'production') {
+//       this.from = 'onboarding@resend.dev'; // this is required if you do not use a domain
+//     } else {
+//       this.from = `Benjamin <${process.env.EMAIL_FROM}>`;
+//     }
+//   }
+ 
+//   newTransport() {
+//     if (process.env.NODE_ENV === 'production') {
+//       return nodemailer.createTransport({
+//         host: 'smtp.resend.com',
+//         port: 465,
+//         auth: {
+//           user: 'resend',
+//           pass: process.env.RESEND_API_KEY,
+//         },
+//       });
+//     }
+ 
+//     return nodemailer.createTransport({
+//       host: process.env.EMAIL_HOST,
+//       port: process.env.EMAIL_PORT,
+//       auth: {
+//         user: process.env.EMAIL_USERNAME,
+//         pass: process.env.EMAIL_PASSWORD,
+//       },
+//     });
+//   }
+// With gmail, you need to go to your google account, enable 2-Step Verification, and then set an app password (look at the bottom of the 2-Step Verification page). Then when you have that password you can use code like this:
+
+// module.exports = class Email {
+//   constructor(user, url) {
+//     this.to = user.email;
+//     this.firstName = user.name.split(' ')[0];
+//     this.url = url;
+//     this.from = `Benjamin <${process.env.EMAIL_FROM}>`;
+//   }
+ 
+//   newTransport() {
+//     if (process.env.NODE_ENV === 'production') {
+//       return nodemailer.createTransport({
+//         service: 'gmail',
+//         auth: {
+//           user: process.env.GMAIL_EMAIL,
+//           pass: process.env.GMAIL_APP_PASSWORD,
+//         },
+//     }
+ 
+//     return nodemailer.createTransport({
+//       host: process.env.EMAIL_HOST,
+//       port: process.env.EMAIL_PORT,
+//       auth: {
+//         user: process.env.EMAIL_USERNAME,
+//         pass: process.env.EMAIL_PASSWORD,
+//       },
+//     });
+//   }
+// Make sure in your config file you put the app password in quotes since there are spaces:
+
+// GMAIL_APP_PASSWORD="your pass word here"
+// Of note, Nodemailer recommends being cautious with gmail: https://www.nodemailer.com/usage/using-gmail/
+
+
+
+
+
+
+// const scriptSrcUrls = ['https://unpkg.com/', 'https://tile.openstreetmap.org', 'https://cdnjs.cloudflare.com']; // I think this last one will fix it for you, you may need to try to adjust this URL.
+// const styleSrcUrls = [
+//   'https://unpkg.com/',
+//   'https://tile.openstreetmap.org',
+//   'https://fonts.googleapis.com/',
+// ];
+// const connectSrcUrls = ['https://unpkg.com', 'https://tile.openstreetmap.org'];
+// const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com'];
+// and then:
+
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       connectSrc: ["'self'", ...connectSrcUrls],
+//       scriptSrc: ["'self'", ...scriptSrcUrls],
+//       styleSrc: ["'self'", ...styleSrcUrls],
+//       workerSrc: ["'self'", 'blob:'],
+//       objectSrc: [],
+//       imgSrc: ["'self'", 'blob:', 'data:', 'https:'],
+//       fontSrc: ["'self'", ...fontSrcUrls],
+//     },
+//   }),
+// );
+
+
+
+// The error is telling you the problem, the script violates the content security policy directive "script-src 'self'". If you look at the helmet documentation under content security policy you will see this is the default setting: https://www.npmjs.com/package/helmet So to fix this you need to change your helmet call in app.js. For example, you may put (to fix this and other potential issues throughout the course):
+
+// const scriptSrcUrls = ['https://unpkg.com/', 'https://tile.openstreetmap.org', 'https://cdnjs.cloudflare.com']; // I think this last one will fix it for you, you may need to try to adjust this URL.
+// const styleSrcUrls = [
+//   'https://unpkg.com/',
+//   'https://tile.openstreetmap.org',
+//   'https://fonts.googleapis.com/',
+// ];
+// const connectSrcUrls = ['https://unpkg.com', 'https://tile.openstreetmap.org'];
+// const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com'];
+// and then:
+
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       connectSrc: ["'self'", ...connectSrcUrls],
+//       scriptSrc: ["'self'", ...scriptSrcUrls],
+//       styleSrc: ["'self'", ...styleSrcUrls],
+//       workerSrc: ["'self'", 'blob:'],
+//       objectSrc: [],
+//       imgSrc: ["'self'", 'blob:', 'data:', 'https:'],
+//       fontSrc: ["'self'", ...fontSrcUrls],
+//     },
+//   }),
+// );
+
+
+
+// 1 month ago
+// Greetings Hammed,
+// It's been long since I opened these files as I have already finished the course but here's what I can guide you on:
+
+// Use this code:
+// "
+
+// .set(
+// 'Content-Security-Policy',
+// "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js 'unsafe-inline' 'unsafe-eval';",
+// )
+// "
+
+// Inside the "getLoginForm" FUNCTION
+// and add this code: "script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js')" in your pug file (I hope that this files will go in Login Page where the error comes, put this code wherever the code gives you error or simple if you don't want to use that, just use a chrome plugin for now which is CSP Plugin (search it in google chrome store and it's logo has only Reddish "CSP" written on it and nothing else or here's the link I found: "https://chromewebstore.google.com/detail/always-disable-content-se/ffelghdomoehpceihalcnbmnodohkibj?hl=en"
+
+// Choose whatever suits you best and I'm really sorry, I don't really open the main Udemy site because of which I'm unable to see the notifications so Sorry for being late, hope this message helps.
+// Cheers,
