@@ -11,10 +11,9 @@ const login = async (email, password) => {
     console.log(res);
     } catch (err) {
     
-        console.log(err.data);
+        console.log(data.err);
     }
 };
-
 
 document.querySelector('.form').addEventListener('submit', e => {
     e.preventDefault();
